@@ -5,17 +5,19 @@ import { useEffect } from 'react'
 
 import { useAuth } from '@/hooks/useAuth'
 
-export default function Home() {
+export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
-    if (isAuthenticated) {
-      router.push('/dashboard')
-    } else {
+    if (!isAuthenticated) {
       router.push('/login')
     }
   }, [isAuthenticated, router])
 
-  return null
+  if (!isAuthenticated) {
+    return null
+  }
+
+  return <>{children}</>
 }
