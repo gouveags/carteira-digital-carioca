@@ -10,11 +10,11 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
-  ...compat.extends(
-    'plugin:@next/next/recommended',
-    '@rocketseat/eslint-config/next'
-  ),
   ...compat.config({
+    extends: [
+      'plugin:@next/next/recommended',
+      '@rocketseat/eslint-config/next',
+    ],
     plugins: ['simple-import-sort', 'react'],
     rules: {
       'simple-import-sort/imports': 'error',
